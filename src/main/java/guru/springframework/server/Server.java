@@ -32,9 +32,8 @@ public class Server {
         return nest(path("/product"),
                 nest(accept(APPLICATION_JSON),
                         route(GET("/{id}"), handler::getProductFromRepository)
-                                .andRoute(method(HttpMethod.GET), handler::getAllProductsFromRepository)
-                ).andRoute(POST("/")
-                        .and(contentType(APPLICATION_JSON)), handler::saveProductToRepository));
+                        .andRoute(method(HttpMethod.GET), handler::getAllProductsFromRepository))
+                        .andRoute(POST("/").and(contentType(APPLICATION_JSON)), handler::saveProductToRepository));
     }
 
     public void startTomcatServer(String host, int port) throws LifecycleException {
